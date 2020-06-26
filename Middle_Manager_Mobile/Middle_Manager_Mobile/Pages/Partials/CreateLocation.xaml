@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.Partials.CreateLocation">
+
+    <ContentPage.BindingContext>
+        <viewModels:ManageLocationsViewModel></viewModels:ManageLocationsViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout Style="{StaticResource StackLayoutStyleWide}"
+                         VerticalOptions="StartAndExpand"
+                         x:Name="mainLayout"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <Label Text="Location"></Label>
+                <Entry x:Name="nameEntry"
+                       Placeholder="Name"
+                       Text="{Binding EditableLocation.Name}" />
+                <Label Text="{Binding EditableLocation.Name}"></Label>
+                <Button x:Name="CreateButton"
+                        Text="Create"
+                        Clicked="OnCreateButtonClicked" />
+
+                <StackLayout x:Name="UserSelectionStack"
+                             IsVisible="False">
+
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Label x:Name="LocationUsersText"
+                                   HorizontalOptions="Start"
+                                   Text="Location users"
+                                   FontSize="30" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ListView x:Name="LocationUsersListView"
+                              ItemsSource="{Binding LocationUsersList}"
+                              SelectedItem="{Binding SelectedLocationUser}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="6*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding User.FirstName}"
+                                               Grid.Column="0"
+                                               FontSize="Medium"
+                                               FontAttributes="Bold"
+                                               VerticalTextAlignment="Center"></Label>
+
+                                        <Button x:Name="Delete"
+                                                Clicked="RemoveLocationUser"
+                                                Text="&#xf068;"
+                                                Grid.Column="2"
+                                                FontFamily="{StaticResource FontAwesomeSolid}" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Label x:Name="UsersText"
+                                   HorizontalOptions="Start"
+                                   Text="Users"
+                                   FontSize="30" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ListView x:Name="UsersListView"
+                              ItemsSource="{Binding UsersList}"
+                              SelectedItem="{Binding SelectedUser}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="6*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding FirstName}"
+                                               Grid.Column="0"
+                                               FontSize="Medium"
+                                               FontAttributes="Bold"
+                                               VerticalTextAlignment="Center"></Label>
+
+                                        <Button x:Name="CreateLocationUserButton"
+                                                Clicked="CreateLocationUser"
+                                                Text="&#xf067;"
+                                                Grid.Column="2"
+                                                FontFamily="{StaticResource FontAwesomeSolid}" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout x:Name="aiLayout"
+                         IsVisible="{Binding IsLoading}"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         BackgroundColor="Gray"
+                         Opacity="1">
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   IsVisible="{Binding IsLoading}"
+                                   Color="DodgerBlue"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

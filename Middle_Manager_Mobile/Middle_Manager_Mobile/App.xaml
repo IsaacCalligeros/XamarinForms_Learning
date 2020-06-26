@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Middle_Manager_Mobile.Converters;assembly=Middle_Manager_Mobile"
+             xmlns:enums="clr-namespace:SharedClassLibrary;assembly=SharedClassLibrary"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontAwesomeBrands">
+                <On Platform="Android"
+                    Value="FontAwesome5Brands.otf#Regular" />
+                <On Platform="iOS"
+                    Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP"
+                    Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontAwesomeSolid">
+                <On Platform="Android"
+                    Value="FontAwesome5Solid.otf#Regular" />
+                <On Platform="iOS"
+                    Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP"
+                    Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontAwesomeRegular">
+                <On Platform="Android"
+                    Value="FontAwesome5Regular.otf#Regular" />
+                <On Platform="iOS"
+                    Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP"
+                    Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="BoldFont">
+                <On Platform="Android"
+                    Value="OpenSans-Bold.ttf#Open Sans" />
+                <On Platform="UWP"
+                    Value="/Assets/OpenSans-Bold.ttf#Open Sans" />
+                <On Platform="iOS"
+                    Value="OpenSans-Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="NormalFont">
+                <On Platform="Android"
+                    Value="OpenSans-Regular.ttf#Open Sans" />
+                <On Platform="UWP"
+                    Value="/Assets/OpenSans-Regular.ttf#Open Sans" />
+                <On Platform="iOS"
+                    Value="OpenSans-Regular" />
+            </OnPlatform>
+
+            <Style x:Key="ButtonStyle"
+                   TargetType="Button">
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="WidthRequest"
+                        Value="150" />
+                <Setter Property="CornerRadius"
+                        Value="20" />
+                <Setter Property="BorderWidth"
+                        Value="2" />
+                <Setter Property="HeightRequest"
+                        Value="45" />
+            </Style>
+
+            <Style x:Key="StackLayoutStyleNarrow"
+                   TargetType="StackLayout">
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="25, 0, 25, 0" />
+            </Style>
+            <Style x:Key="StackLayoutStyleWide"
+                   TargetType="StackLayout">
+                <Setter Property="Margin"
+                        Value="5, 25, 5, 0" />
+            </Style>
+            <Style x:Key="StandardFont"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="Medium" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontAwesomeRegular}"/>
+                        
+            </Style>
+
+            <converters:EnumConverter x:Key="EnumConverter" />
+            <converters:IsUserTypeConverter x:Key="IsUserTypeConverter" />
+            <converters:IsLocationTypeConverter x:Key="IsLocationTypeConverter" />
+            <converters:TaskInstanceToDetailsConverter x:Key="TaskInstanceToDetailsConverter" />
+            <converters:PrependDashConverter x:Key="PrependDashConverter" />
+            <converters:PhotoTaskValueConverter x:Key="PhotoTaskValueConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

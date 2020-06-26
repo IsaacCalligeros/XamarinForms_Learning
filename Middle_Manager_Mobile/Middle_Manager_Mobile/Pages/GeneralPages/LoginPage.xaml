@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+             xmlns:customControl="clr-namespace:Middle_Manager_Mobile.Controls;assembly=Middle_Manager_Mobile"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.LoginPage"
+             BackgroundImageSource="login-background.jpg">
+
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel></viewModels:LoginViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <StackLayout Style="{StaticResource StackLayoutStyleWide}">
+
+            <Label Text="Log In" FontSize="Large"
+                   FontFamily="{StaticResource BoldFont}"
+                   Margin="0, 30, 0, 60"/>
+
+            <customControl:CustomEntry 
+                x:Name="UsernameEntry"
+                HeightRequest="50"
+                Text="{Binding UserForLogin.Username, Mode=TwoWay}"
+                   Placeholder="Username"
+                   HorizontalTextAlignment="Center"
+                   TextChanged="UserOrPassChanged"/>
+
+            <customControl:CustomEntry 
+                   x:Name="PasswordEntry"
+                   HeightRequest="50"
+                   Text="{Binding UserForLogin.Password}"
+                   Placeholder="Password" 
+                   HorizontalTextAlignment="Center"
+                   IsPassword="true"
+                   Margin="0, 10, 0, 0"
+                   TextChanged="UserOrPassChanged"/>
+            <Label x:Name="FailedText"
+                   Text=""
+                   FontSize="Medium"
+                   FontFamily="{StaticResource BoldFont}"
+                   TextColor="Red" />
+            <StackLayout 
+                Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand">
+                <Label HorizontalOptions="StartAndExpand"
+                   Margin="0, 0, 10, 0"
+                   TextColor="Blue"
+                   FontSize="14"
+                   Text="Sign Up?">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SignUp" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label HorizontalOptions="EndAndExpand"
+                   Margin="0, 0, 10, 0"
+                   TextColor="Blue"
+                   FontSize="14"
+                   Text="Forgot Password?">
+                <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ForgotPassword" />
+                    </Label.GestureRecognizers>
+            </Label>
+            </StackLayout>
+
+            <Button x:Name="LoginButton" Text="LOGIN" BackgroundColor="#178EFF"
+                    Margin="0, 0, 0, 0"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource ButtonStyle}"
+                    FontFamily="{StaticResource BoldFont}"
+                    IsEnabled="False"
+                    Clicked="OnLoginButtonClicked" />
+            <Label x:Name="messageLabel" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

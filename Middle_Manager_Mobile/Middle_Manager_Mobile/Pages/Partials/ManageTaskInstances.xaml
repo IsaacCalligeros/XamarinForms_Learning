@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:SharedClassLibrary.Models;assembly=SharedClassLibrary"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+             xmlns:local="clr-namespace:SharedClassLibrary;assembly=SharedClassLibrary"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.Partials.ManageTaskInstances">
+    <ContentPage.BindingContext>
+        <viewModels:TaskInstanceViewModel></viewModels:TaskInstanceViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource StackLayoutStyleWide}" VerticalOptions="StartAndExpand">
+
+            <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                    <Label x:Name="TaskInstancesText"
+                           HorizontalOptions="Start" Text="Task instances" FontSize="30"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                    <Button x:Name="AddTaskInstances" WidthRequest="50" 
+                            HorizontalOptions="End" Text="&#xf067;" FontFamily="{StaticResource FontAwesomeSolid}" Clicked="AddTaskInstance_OnClicked" />
+                </StackLayout>
+            </StackLayout>
+
+            <ListView x:Name="TaskInstanceListItem" ItemsSource="{Binding TaskInstanceList}" SelectedItem="{Binding SelectedTaskInstance}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--Need to swap this tride using Binding Path=. and refrencing with a converter but passes through null stackoverflow...-->
+                                <Label Text="{Binding Title}" 
+                                       Grid.Column="0"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       VerticalTextAlignment="Center"></Label>
+
+                                <Button x:Name="Update" Clicked="EditTaskInstance" Text="&#xf044;" Grid.Column="1" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                <Button x:Name="Delete" Clicked="DeleteTaskInstance"  Text="&#xf2ed;" Grid.Column="2" FontFamily="{StaticResource FontAwesomeSolid}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

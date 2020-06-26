@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:helpers="clr-namespace:Middle_Manager_Mobile.Helpers;assembly=Middle_Manager_Mobile"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Username" />
+            <Entry x:Name="signUpUsernameEntry"
+                   Placeholder="username" />
+            <Label Text="Password" />
+            <Entry x:Name="signUpPasswordEntry"
+                   Placeholder="password"
+                   IsPassword="true" />
+
+            <Entry x:Name="firstNameEntry"
+                   Placeholder="First Name" />
+            <Entry x:Name="lastNameEntry"
+                   Placeholder="Last Name" />
+            <DatePicker x:Name="DateOfBirthPicker"
+                        Date="{x:Static helpers:Defaults.DefaultDOB}"
+                        Format="d MMM yyyy"
+                        MaximumDate="{x:Static sys:DateTime.Today}" />
+            <Entry x:Name="Email"
+                   Placeholder="name@email.com" />
+            <!-- Later for error message
+            <Entry x:Name="EmailError"></Entry>-->
+
+            <Button x:Name="RegisterButon"
+                    Text="Register"
+                    Clicked="OnRegisterButtonClicked" />
+            <Label x:Name="signUpMessageLabel" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

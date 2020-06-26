@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+             xmlns:local="clr-namespace:SharedClassLibrary;assembly=SharedClassLibrary"
+             xmlns:helpers="clr-namespace:Middle_Manager_Mobile.Helpers;assembly=Middle_Manager_Mobile"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:controls="clr-namespace:Middle_Manager_Mobile.Controls;assembly=Middle_Manager_Mobile"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.Partials.CreateTaskInstance">
+    <ContentPage.BindingContext>
+        <viewModels:TaskInstanceViewModel></viewModels:TaskInstanceViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Style="{StaticResource StackLayoutStyleWide}"
+                         VerticalOptions="StartAndExpand">
+
+                <Label Text="Task instance"></Label>
+
+                <Entry x:Name="titleEntry"
+                       Placeholder="Title"
+                       Text="{Binding EditableTaskInstance.Title}" />
+
+                <Picker x:Name="TaskTemplatePicker"
+                        ItemsSource="{Binding TaskTemplateList}"
+                        ItemDisplayBinding="{Binding Title}"
+                        SelectedIndexChanged="TaskTemplatePicker_SelectedIndexChanged"
+                        Title="Select a task template" />
+
+                <Editor x:Name="descriptionEntry"
+                        HeightRequest="150"
+                        IsEnabled="False"
+                        AutoSize="TextChanges"
+                        Keyboard="Default"
+                        IsTextPredictionEnabled="false"
+                        Placeholder="Description"
+                        Text="{Binding SelectedTaskTemplate.Description}" />
+
+                <Picker x:Name="TaskValueTypePicker"
+                        ItemsSource="{Binding TaskTargetEnum}"
+                        SelectedIndexChanged="TaskTargetTypeChanged"
+                        SelectedIndex="{Binding EditableTaskInstance.TargetType,
+                                Converter={StaticResource EnumConverter},
+                                ConverterParameter={x:Type local:Enums}}"
+                        Title="Select a target " />
+
+                <Picker x:Name="AssignedToUserPicker"
+                        ItemsSource="{Binding UserList}"
+                        IsVisible="False"
+                        ItemDisplayBinding="{Binding FirstName}"
+                        Title="assign to user" />
+
+                <Picker x:Name="AssignedToLocationPicker"
+                        ItemsSource="{Binding LocationList}"
+                        IsVisible="False"
+                        ItemDisplayBinding="{Binding Name}"
+                        Title="assign to Location" />
+
+                <controls:ImageUpload
+                    x:Name="ImageUploadControl">
+
+                </controls:ImageUpload>
+
+                <Label Text="{x:Static local:SharedResources.RequiredTaskCompletionDate}"></Label>
+                <DatePicker x:Name="ExpectedCompletionTimePicker"
+                            Date="{Binding EditableTaskInstance.ExpectedCompletionTime}"
+                            Format="d MMM yyyy" />
+
+                <CheckBox x:Name="IsRecurring"
+                          IsChecked="{Binding EditableTaskInstance.Recurring, Mode=TwoWay}" />
+                <Label Text="Required task completion date"></Label>
+
+                <Picker x:Name="RecurrenceTypePicker"
+                        ItemsSource="{Binding RecurrenceTypeEnum}"
+                        IsVisible="{Binding EditableTaskInstance.Recurring}"
+                        SelectedIndex="{Binding EditableTaskInstance.RecurrenceType,
+                                Converter={StaticResource EnumConverter}, 
+                                ConverterParameter={x:Type local:Enums}}"
+                        Title="Select a recurrence type" />
+
+                <!--TODO: Want to use monday-day-hour-minute picker starting from 0, controls like telerik and syncfusion handle this but kinda pricey-->
+                <!--<TimePicker x:Name="RecurringInterval" Format="dd-MMM hh:mm" />-->
+
+                <DatePicker x:Name="RecurrenceEndDate"
+                            IsVisible="{Binding EditableTaskInstance.Recurring}"
+                            Date="{Binding EditableTaskInstance.RecurrenceEndDate}"
+                            Format="d MMM yyyy"
+                            MinimumDate="{x:Static sys:DateTime.Today}" />
+
+                <Button x:Name="CreateButton"
+                        Text="Create"
+                        Clicked="OnCreateButtonClicked" />
+                <Label x:Name="createdMessageLabel" />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

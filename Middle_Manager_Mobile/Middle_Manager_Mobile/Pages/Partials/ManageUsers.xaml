@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.Partials.ManageUsers">
+
+    <ContentPage.BindingContext>
+        <viewModels:ManageUsersViewModel></viewModels:ManageUsersViewModel>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource StackLayoutStyleWide}" VerticalOptions="StartAndExpand">
+
+            <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                    <Label x:Name="UsersText"
+                           HorizontalOptions="Start" Text="Users" FontSize="30"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                    <Button x:Name="AddUsers" WidthRequest="50" 
+                            HorizontalOptions="End" Text="&#xf0c0;" FontFamily="{StaticResource FontAwesomeSolid}" Clicked="AddUsers_OnClicked" />
+                </StackLayout>
+            </StackLayout>
+
+            <ListView x:Name="UsersList" ItemsSource="{Binding UsersList}" SelectedItem="{Binding SelectedUser}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding FirstName}" Grid.Column="0"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       VerticalTextAlignment="Center"></Label>
+
+                                <Button x:Name="Update" Clicked="EditUser" Text="&#xf044;" Grid.Column="1" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                <Button x:Name="Delete" Clicked="DeleteUser"  Text="&#xf2ed;" Grid.Column="2" FontFamily="{StaticResource FontAwesomeSolid}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

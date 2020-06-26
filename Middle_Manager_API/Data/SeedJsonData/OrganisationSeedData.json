@@ -1,0 +1,18 @@
+[
+  {
+    "OrganisationId": "1",
+    "Name": "Big Shop",
+    "Settings": "0",
+    "Code": "12345",
+    "Key": "123456789",
+    "Expiry": "2025-08-02"
+  },
+  {
+    "OrganisationId": "2",
+    "Name": "Org2",
+    "Settings": "0",
+    "Code": "123456",
+    "Key": "1234567890",
+    "Expiry": "2025-08-02"
+  }
+]

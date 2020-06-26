@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:Middle_Manager_Mobile.Pages"
+            xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+            mc:Ignorable="d"
+            x:Class="Middle_Manager_Mobile.Pages.TabPage">
+
+    <TabbedPage.BindingContext>
+        <viewModels:TabPageViewModel></viewModels:TabPageViewModel>
+    </TabbedPage.BindingContext>
+
+    <local:HomePage Title="Home"
+                    IconImageSource="" />
+    <local:ManagePage x:Name="ManagePageControl"
+                      Title="Manage"
+                      IsVisible="{Binding IsAdmin}" />
+    <local:SettingsPage Title="Settings" />
+    <TabbedPage.ItemTemplate>
+        <DataTemplate>
+            <ContentPage Title="{Binding Name}"
+                         IconImageSource="monkeyicon.png">
+                <StackLayout Padding="5, 25">
+                    <Label Text="{Binding Name}"
+                           Font="Bold,Large"
+                           HorizontalOptions="Center" />
+                    <Image Source="{Binding PhotoUrl}"
+                           WidthRequest="200"
+                           HeightRequest="200" />
+                    <StackLayout Padding="50, 10">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Family:"
+                                   HorizontalOptions="FillAndExpand" />
+                            <Label Text="{Binding Family}"
+                                   Font="Bold,Medium" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ContentPage>
+        </DataTemplate>
+    </TabbedPage.ItemTemplate>
+
+</TabbedPage>

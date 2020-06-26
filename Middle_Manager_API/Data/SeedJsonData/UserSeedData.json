@@ -1,0 +1,86 @@
+[
+  {
+    "UserName": "bobby",
+    "OrganisationId": "1",
+    "UserRole": "2",
+    "Email": "Isaac.calligeros@gmail.com",
+    "Gender": "Male",
+    "FirstName": "bobby",
+    "LastName": "LastName",
+    "DateOfBirth": "1994-02-21",
+    "Password": "password",
+    "Created": "2017-08-02",
+    "LastActive": "2017-08-02",
+    "Country": "Burundi",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/3.jpg",
+        "isMain": true,
+        "description": "Non deserunt labore sunt ex laboris et adipisicing ullamco officia minim."
+      }
+    ]
+  },
+  {
+    "UserName": "bobby22",
+    "OrganisationId": "1",
+    "UserRole": "2",
+    "Email": "Isaac.calligeros@gmail.com",
+    "Gender": "Male",
+    "FirstName": "bobby",
+    "LastName": "LastName",
+    "DateOfBirth": "1994-02-21",
+    "Password": "password",
+    "Created": "2017-08-02",
+    "LastActive": "2017-08-02",
+    "Country": "Burundi",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/3.jpg",
+        "isMain": true,
+        "description": "Non deserunt labore sunt ex laboris et adipisicing ullamco officia minim."
+      }
+    ]
+  },
+  {
+    "UserName": "Employee1",
+    "OrganisationId": "1",
+    "UserRole": "0",
+    "Email": "",
+    "Gender": "Male",
+    "FirstName": "employee1",
+    "LastName": "employee1Last",
+    "DateOfBirth": "1994-02-21",
+    "Password": "password",
+    "Created": "2017-08-02",
+    "LastActive": "2017-08-02",
+    "Country": "Burundi",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/3.jpg",
+        "isMain": true,
+        "description": "Non deserunt labore sunt ex laboris et adipisicing ullamco officia minim."
+      }
+    ]
+  },
+  {
+    "UserName": "Employee2",
+    "OrganisationId": "1",
+    "UserRole": "0",
+    "Email": "spam.calligeros@gmail.com",
+    "Gender": "Male",
+    "FirstName": "employee2",
+    "LastName": "employee2Last",
+    "DateOfBirth": "1994-02-21",
+    "Password": "password",
+    "Created": "2017-08-02",
+    "LastActive": "2017-08-02",
+    "Country": "Burundi",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/women/3.jpg",
+        "isMain": true,
+        "description": "Non deserunt labore sunt ex laboris et adipisicing ullamco officia minim."
+      }
+    ]
+  }
+]

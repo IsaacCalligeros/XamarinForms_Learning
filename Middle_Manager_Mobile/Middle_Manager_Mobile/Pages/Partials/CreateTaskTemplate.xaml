@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+             xmlns:local="clr-namespace:SharedClassLibrary;assembly=SharedClassLibrary"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.Partials.CreateTask">
+
+    <ContentPage.BindingContext>
+        <viewModels:ManageTaskTemplatesViewModel></viewModels:ManageTaskTemplatesViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <StackLayout Style="{StaticResource StackLayoutStyleWide}"
+                     VerticalOptions="StartAndExpand">
+
+            <Label Text="Task template"></Label>
+
+            <Entry x:Name="titleEntry"
+                   Placeholder="Title"
+                   Text="{Binding EditableTaskTemplate.Title}" />
+            
+            <Editor x:Name="descriptionEntry"
+                    HeightRequest="150"
+                    AutoSize="TextChanges"
+                    Keyboard="Default"
+                    IsTextPredictionEnabled="false"
+                   Placeholder="Description"
+                    Text="{Binding SelectedTaskTemplate.Description}" />
+            
+
+            <Picker x:Name="TaskValueTypePicker"
+                    ItemsSource="{Binding ValueTypeEnum}"
+                    SelectedIndex="{Binding EditableTaskTemplate.ValueType,
+                                Converter={StaticResource EnumConverter},
+                                ConverterParameter={x:Type local:Enums}}"
+                    Title="Select a task assesment type" />
+            <Label x:Name="TaskValueTypeWarning"
+                   IsVisible="False"
+                   Text="{x:Static local:SharedResources.CannotChangeTaskValueType}">
+            </Label>
+
+            <Button x:Name="CreateButton"
+                    Text="Create"
+                    Clicked="OnCreateButtonClicked" 
+                    TextColor="Red"/>
+            <Label x:Name="createdMessageLabel" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

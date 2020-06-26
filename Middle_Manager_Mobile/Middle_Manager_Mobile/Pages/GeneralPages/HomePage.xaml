@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+            xmlns:models="clr-namespace:SharedClassLibrary.Models;assembly=SharedClassLibrary"
+            xmlns:local="clr-namespace:SharedClassLibrary;assembly=SharedClassLibrary"
+            xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+            mc:Ignorable="d"
+            x:Class="Middle_Manager_Mobile.Pages.HomePage">
+
+    <TabbedPage.BindingContext>
+        <viewModels:HomeViewModel></viewModels:HomeViewModel>
+    </TabbedPage.BindingContext>
+
+    <TabbedPage.Children>
+        <ContentPage Title="List">
+            <ContentPage.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                 Glyph="&#xf0ca;" />
+            </ContentPage.IconImageSource>
+            <StackLayout Style="{StaticResource StackLayoutStyleWide}"
+                         VerticalOptions="StartAndExpand">
+
+                <Label Text="{Binding TaskInstanceCount,
+                          StringFormat='{0} Tasks'}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="Large"
+                       FontFamily="{StaticResource BoldFont}" />
+
+                <ListView x:Name="TaskInstanceListItem"
+                          ItemsSource="{Binding UsersTasksGrouped}"
+                          IsGroupingEnabled="True"
+                          GroupDisplayBinding="{Binding Key}"
+                          GroupShortNameBinding="{Binding Key}">
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="25">
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                             Padding="5"
+                                             BackgroundColor="#3498DB">
+                                    <Label Text="{Binding Key}"
+                                           FontSize="Large"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:TaskInstance">
+                            <ViewCell>
+                                <Grid RowSpacing="20"
+                                      ColumnSpacing="15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Title}"
+                                           Style="{StaticResource StackLayoutStyleWide}"
+                                           Grid.Column="0"
+                                           VerticalTextAlignment="Center"></Label>
+
+                                    <Label Text="{Binding Location.Name}"
+                                           Style="{StaticResource StackLayoutStyleWide}"
+                                           Grid.Column="1"
+                                           VerticalTextAlignment="Center"></Label>
+
+                                    <Label Text="{Binding AssignedTo.UserName}"
+                                           Style="{StaticResource StackLayoutStyleWide}"
+                                           Grid.Column="1"
+                                           VerticalTextAlignment="Center"></Label>
+
+                                    <Button x:Name="Update"
+                                            Clicked="UpdateTaskInstance"
+                                            Text="&#xf044;"
+                                            Grid.Column="3"
+                                            FontFamily="{StaticResource FontAwesomeSolid}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+
+        <ContentPage Title="Calendar">
+            <ContentPage.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}"
+                                 Glyph="&#xf073;" />
+            </ContentPage.IconImageSource>
+            <syncfusion:SfCalendar x:Name="calendar"
+                                   DataSource="{Binding CalendarInlineEvents}"
+                                   ViewMode="MonthView"
+                                   ShowInlineEvents="True"
+                                   InlineViewMode="Inline"
+                                   MaximumEventIndicatorCount="1">
+            </syncfusion:SfCalendar>
+        </ContentPage>
+
+    </TabbedPage.Children>
+</TabbedPage>

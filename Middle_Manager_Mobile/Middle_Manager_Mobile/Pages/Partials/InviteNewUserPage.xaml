@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:helpers="clr-namespace:Middle_Manager_Mobile.Helpers;assembly=Middle_Manager_Mobile"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:viewModels="clr-namespace:Middle_Manager_Mobile.ViewModels;assembly=Middle_Manager_Mobile"
+             mc:Ignorable="d"
+             x:Class="Middle_Manager_Mobile.Pages.Partials.InviteNewUserPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:ManageUsersViewModel></viewModels:ManageUsersViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource StackLayoutStyleWide}"
+                     VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <Entry x:Name="signUpUsernameEntry"
+                       Placeholder="username"
+                       Text="{Binding EditableUser.UserName}"
+                       />
+
+                <Entry x:Name="firstNameEntry"
+                       Placeholder="First Name"
+                       Text="{Binding EditableUser.FirstName}"/>
+                <Entry x:Name="lastNameEntry"
+                       Placeholder="Last Name"
+                       Text="{Binding EditableUser.LastName}" />
+                <DatePicker x:Name="DateOfBirthPicker"
+                            Date="{Binding EditableUser.DateofBirth}"
+                            Format="d MMM yyyy"
+                            MaximumDate="{x:Static sys:DateTime.Today}" />
+                <Entry x:Name="Email"
+                       Placeholder="email@domain.com"
+                       Text="{Binding EditableUser.Email}"/>
+                <!-- Later for error message
+            <Entry x:Name="EmailError"></Entry>-->
+
+                <Button x:Name="RegisterButon"
+                        Text="Invite"
+                        Clicked="OnInviteClicked" />
+                <Label x:Name="signUpMessageLabel" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
